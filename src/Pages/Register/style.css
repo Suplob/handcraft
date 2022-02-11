@@ -1,0 +1,44 @@
+.loginRegisterHeadingWrapper {
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+  color: gray;
+  margin-top: 8vw;
+  margin-bottom: 5vw;
+}
+
+.loginRegisterHeadingWrapper h2 {
+  transition: 150ms ease;
+}
+
+.loginRegisterHeadingWrapper h2:hover {
+  color: black;
+}
+
+.loginRegisterHeadingWrapper > h2 {
+  margin-right: 30px;
+}
+
+.active {
+  color: black;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-control {
+  padding: 10px;
+  border: 1px solid rgb(223, 223, 223);
+}
+
+.form-control:focus {
+  outline: none;
+  border: 1px solid black;
+}
+
+form label {
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 10px;
+}
