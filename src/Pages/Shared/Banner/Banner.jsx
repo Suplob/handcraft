@@ -3,10 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import styled from "styled-components";
-import PrimaryBTN from "../../Shared/PrimaryBTN/PrimaryBTN";
-import SecondaryBTN from "../../Shared/SecondaryBTN/SecondaryBTN";
+import SecondaryBTN from "../SecondaryBTN/SecondaryBTN";
 
-const Banner = () => {
+const Banner = ({ children, btn }) => {
   const history = useHistory();
   const matches = useMediaQuery("(min-width:600px)");
 
@@ -38,26 +37,23 @@ const Banner = () => {
     font-weight: 300;
   `;
   return (
-    <Box sx={backgroundStyle}>
+    <Box sx={{ ...backgroundStyle }}>
       <HeroText matches>
         <H1
           style={{
             fontSize: matches ? "60px" : "40px",
           }}
         >
-          ELEGANTLY DESIGNED POTS
+          {children}
         </H1>
         <br />
-        <Box sx={{ display: "flex", justifyContent: "center" }}>
-          <Link to="/home" smooth style={{ textDecoration: "none" }}>
-            <SecondaryBTN
-              style={{ margin: "0 auto" }}
-              onClick={() => history.push("/home#services")}
-            >
-              EXPLORE
-            </SecondaryBTN>
-          </Link>
-        </Box>
+        {btn && (
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Link to="/allProducts" smooth style={{ textDecoration: "none" }}>
+              <SecondaryBTN style={{ margin: "0 auto" }}>EXPLORE</SecondaryBTN>
+            </Link>
+          </Box>
+        )}
       </HeroText>
     </Box>
   );

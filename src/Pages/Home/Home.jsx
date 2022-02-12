@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Layout from "../Shared/Layout/Layout";
-import Banner from "./Banner/Banner";
+import Banner from "../Shared/Banner/Banner";
+import Services from "./Services/Services";
 
 const Home = () => {
   useEffect(() => {
@@ -8,7 +9,8 @@ const Home = () => {
   }, []);
   return (
     <Layout>
-      <Banner></Banner>
+      <Banner btn>ELEGANTLY DESIGNED POTS</Banner>
+      <Services></Services>
     </Layout>
   );
 };
