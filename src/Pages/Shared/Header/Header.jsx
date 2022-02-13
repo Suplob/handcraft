@@ -175,6 +175,14 @@ export default function Header(props) {
                           Login
                         </Typography>
                       </MenuItem>
+                      <MenuItem onClick={handleCloseNavMenu}>
+                        <Typography
+                          textAlign="center"
+                          onClick={() => history.push("/register")}
+                        >
+                          Register
+                        </Typography>
+                      </MenuItem>
                     </>
                   )}
                 </Menu>
@@ -221,6 +229,13 @@ export default function Header(props) {
                       style={navbar ? activeColor : inactiveColor}
                     >
                       Login
+                    </Button>
+                    <Button
+                      sx={{ my: 2, display: "block" }}
+                      onClick={() => history.push("/register")}
+                      style={navbar ? activeColor : inactiveColor}
+                    >
+                      Register
                     </Button>
                   </>
                 )}

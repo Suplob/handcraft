@@ -8,6 +8,7 @@ import {
   signOut,
 } from "firebase/auth";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 initializeAuthentication();
 
@@ -22,6 +23,7 @@ const useFirebase = () => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         setError("");
+        addUserToDb(name, email);
         const newUser = { email, name: name };
         setUser(newUser);
         updateProfile(auth.currentUser, {
@@ -31,7 +33,7 @@ const useFirebase = () => {
           .catch((error) => {
             setError(error.mesage);
           });
-        history.replace(location?.state?.from || "/login");
+        history.replace(location?.state?.from || "/home");
       })
       .catch((error) => {
         const errorMessage = error.message;
@@ -79,6 +81,14 @@ const useFirebase = () => {
     });
     return () => unsubscribed;
   }, []);
+
+  const addUserToDb = (name, email) => {
+    axios.post(`http://localhost:5000/addUserToDb`, {
+      name,
+      email,
+      role: "user",
+    });
+  };
 
   return {
     handlePasswordRegister,

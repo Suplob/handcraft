@@ -48,6 +48,8 @@ const SingleService = () => {
         name,
         email,
         address,
+        product: service,
+        status: "Pending",
       })
       .then((res) => {
         if (res.status === 200) {

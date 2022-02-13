@@ -12,6 +12,7 @@ const AllProducts = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    document.title = "All Products | HandCraft";
     setLoading(true);
     axios
       .get(`https://hand-craft-backend.herokuapp.com/services`)

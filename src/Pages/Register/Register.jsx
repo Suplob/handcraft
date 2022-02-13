@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
+import Banner from "../Shared/Banner/Banner";
 import Layout from "../Shared/Layout/Layout";
 import PrimaryBTN from "../Shared/PrimaryBTN/PrimaryBTN";
 import "./style.css";
@@ -34,6 +35,7 @@ const Register = () => {
 
   return (
     <Layout>
+      <Banner>Register</Banner>
       <Box sx={{ margin: "100px auto 0 auto", width: "40vw" }}>
         <form className="loginForm form" onSubmit={handleRegister}>
           <Typography
@@ -70,6 +72,9 @@ const Register = () => {
           />
           <PrimaryBTN>Register</PrimaryBTN>
         </form>
+        <p onClick={() => history.push("/login")} style={{ cursor: "pointer" }}>
+          Already Have An Account? Login
+        </p>
       </Box>
     </Layout>
   );
