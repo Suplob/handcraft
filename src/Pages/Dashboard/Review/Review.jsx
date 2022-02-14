@@ -24,22 +24,10 @@ const Review = () => {
   const handleReviewSubmit = (e) => {
     // setSubmitBtnText(<CircularProgress color="inherit" />);
     e.preventDefault();
+
     const data = new FormData(e.target);
     data.append("image", image);
-
-    // axios
-    // .post(`https://hand-craft-backend.herokuapp.com/addReview`, reviewData)
-    //   .then((res) => {
-    //     if (!image) {
-    //       alert("Please select any image");
-    //       setSubmitBtnText("Review");
-    //     } else if (res.status === 200) {
-    //       setSubmitBtnText("Reviewed!");
-    //       setSuccess(true);
-    //     } else {
-    //       setSuccess(false);
-    //     }
-    //   });
+    data.append("rating", value);
 
     fetch("http://localhost:5000/addReview", {
       method: "POST",
@@ -47,7 +35,15 @@ const Review = () => {
     })
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
+        if (!image) {
+          alert("Please select any image");
+          setSubmitBtnText("Review");
+        } else if (result.acknowledged) {
+          setSubmitBtnText("Reviewed!");
+          setSuccess(true);
+        } else {
+          setSuccess(false);
+        }
       });
   };
 
