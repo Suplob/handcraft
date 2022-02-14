@@ -5,8 +5,7 @@ import {
   Rating,
   Typography,
 } from "@mui/material";
-import axios from "axios";
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import useAuth from "../../../hooks/useAuth";
 import PrimaryBTN from "../../Shared/PrimaryBTN/PrimaryBTN";
@@ -22,14 +21,14 @@ const Review = () => {
   }, []);
 
   const handleReviewSubmit = (e) => {
-    // setSubmitBtnText(<CircularProgress color="inherit" />);
+    setSubmitBtnText(<CircularProgress color="inherit" />);
     e.preventDefault();
 
     const data = new FormData(e.target);
     data.append("image", image);
     data.append("rating", value);
 
-    fetch("http://localhost:5000/addReview", {
+    fetch("https://hand-craft-backend.herokuapp.com/addReview", {
       method: "POST",
       body: data,
     })

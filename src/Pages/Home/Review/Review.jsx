@@ -21,8 +21,6 @@ const Review = () => {
       });
   }, []);
 
-  console.log(reviews);
-
   return (
     <>
       {loading ? (

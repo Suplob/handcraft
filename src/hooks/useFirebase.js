@@ -16,6 +16,7 @@ const useFirebase = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [admin, setAdmin] = useState(false);
 
   const auth = getAuth();
   const handlePasswordRegister = (name, email, password, history, location) => {
@@ -82,6 +83,12 @@ const useFirebase = () => {
     return () => unsubscribed;
   }, []);
 
+  useEffect(() => {
+    axios
+      .get(`https://hand-craft-backend.herokuapp.com/users/${user.email}`)
+      .then((res) => setAdmin(res.data.admin));
+  }, [user.email]);
+
   const addUserToDb = (name, email) => {
     axios.post(`http://localhost:5000/addUserToDb`, {
       name,
@@ -98,6 +105,7 @@ const useFirebase = () => {
     error,
     setError,
     handleLogIn,
+    admin,
   };
 };
 

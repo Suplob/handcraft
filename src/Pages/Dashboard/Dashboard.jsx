@@ -27,6 +27,8 @@ import useAuth from "../../hooks/useAuth";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Review from "./Review/Review";
 import Pay from "./Pay/Pay";
+import AdminRoute from "../../CustomRoutes/AdminRoute";
+import AddAdmin from "./AddAdmin/AddAdmin";
 
 const drawerWidth = 240;
 
@@ -40,7 +42,7 @@ function Dashboard(props) {
   let { path, url } = useRouteMatch();
 
   const history = useHistory();
-  const { handleLogOut } = useAuth();
+  const { handleLogOut, admin } = useAuth();
 
   const drawer = (
     <div>
@@ -80,6 +82,19 @@ function Dashboard(props) {
             <ListItemText primary={"Review"} />
           </ListItem>
         </Link>
+        {admin && (
+          <Link
+            style={{ color: "black", textDecoration: "none" }}
+            to={`${url}/addAdmin`}
+          >
+            <ListItem button>
+              <ListItemIcon>
+                <RateReviewIcon />
+              </ListItemIcon>
+              <ListItemText primary={"AddAdmin"} />
+            </ListItem>
+          </Link>
+        )}
         <Divider />
         <ListItem button onClick={handleLogOut}>
           <ListItemIcon>
@@ -184,6 +199,9 @@ function Dashboard(props) {
           </PrivateRoute>
           <PrivateRoute exact path={`${path}/review`}>
             <Review></Review>
+          </PrivateRoute>
+          <PrivateRoute exact path={`${path}/addAdmin`}>
+            <AddAdmin></AddAdmin>
           </PrivateRoute>
         </Switch>
       </Box>
