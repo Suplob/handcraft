@@ -29,6 +29,9 @@ import Review from "./Review/Review";
 import Pay from "./Pay/Pay";
 import AdminRoute from "../../CustomRoutes/AdminRoute";
 import AddAdmin from "./AddAdmin/AddAdmin";
+import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
+import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
+import ManageOrders from "./ManageOrders/ManageOrders";
 
 const drawerWidth = 240;
 
@@ -82,18 +85,32 @@ function Dashboard(props) {
             <ListItemText primary={"Review"} />
           </ListItem>
         </Link>
+        <Divider></Divider>
         {admin && (
-          <Link
-            style={{ color: "black", textDecoration: "none" }}
-            to={`${url}/addAdmin`}
-          >
-            <ListItem button>
-              <ListItemIcon>
-                <RateReviewIcon />
-              </ListItemIcon>
-              <ListItemText primary={"AddAdmin"} />
-            </ListItem>
-          </Link>
+          <>
+            <Link
+              style={{ color: "black", textDecoration: "none" }}
+              to={`${url}/addAdmin`}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <AdminPanelSettingsIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Add Admin"} />
+              </ListItem>
+            </Link>
+            <Link
+              style={{ color: "black", textDecoration: "none" }}
+              to={`${url}/manageOrders`}
+            >
+              <ListItem button>
+                <ListItemIcon>
+                  <EmojiPeopleIcon />
+                </ListItemIcon>
+                <ListItemText primary={"Manage Orders"} />
+              </ListItem>
+            </Link>
+          </>
         )}
         <Divider />
         <ListItem button onClick={handleLogOut}>
@@ -200,9 +217,12 @@ function Dashboard(props) {
           <PrivateRoute exact path={`${path}/review`}>
             <Review></Review>
           </PrivateRoute>
-          <PrivateRoute exact path={`${path}/addAdmin`}>
+          <AdminRoute exact path={`${path}/addAdmin`}>
             <AddAdmin></AddAdmin>
-          </PrivateRoute>
+          </AdminRoute>
+          <AdminRoute exact path={`${path}/manageOrders`}>
+            <ManageOrders></ManageOrders>
+          </AdminRoute>
         </Switch>
       </Box>
     </Box>
